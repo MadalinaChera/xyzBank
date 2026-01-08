@@ -7,6 +7,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.Test;
+import pages.LoginPage;
+import pages.ManagerPage;
 
 import java.time.Duration;
 import java.util.ArrayList;
@@ -24,11 +26,11 @@ public class CreateCustomerAccountsTest {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        WebElement bankManagerElement = driver.findElement(By.xpath("//button[text()='Bank Manager Login']"));
-        bankManagerElement.click();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.loginBankManager();
 
-        WebElement addCustomerElement = driver.findElement(By.xpath("//button[@ng-click='addCust()']"));
-        addCustomerElement.click();
+        ManagerPage managerPage = new ManagerPage(driver);
+        managerPage.createCustomer();
 
         WebElement firstNameElement = driver.findElement(By.xpath("//input[@placeholder='First Name']"));
         String firstNameValue = "Madalina";
